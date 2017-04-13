@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router'; 
 
 var username = [];
 class Homepage extends React.Component {
@@ -21,7 +21,6 @@ class Homepage extends React.Component {
     handleChange(event) {
         this.setState({value: event.target.value});
         username = this.state.value;
-        // console.log(this.state.value);
         if(this.state.value.length > 0) {
             $("#js-submit").css('display','block');
         }else{
