@@ -7,13 +7,15 @@ var store = [];
 var click = 0;
 var timer;
 var radioVal = {};
+var selectedOption = {};
 
 class Quizpage extends React.Component {
     constructor(props) {
         super(props);
         this.state = { store: jsonData[0],
                         sec : 0,
-                        min : 0}
+                        min : 0,
+                        selectedOption: ''}
 
         this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
@@ -46,12 +48,18 @@ class Quizpage extends React.Component {
     
     //on click handle next ques
     handleNext() {
-        if(click < jsonData.length - 1) {
-            click += 1;
-            this.setState({store: jsonData[click]});
+        //check conition if user has answer
+        if(radioVal.hasOwnProperty(click+1)) {
+            if(click < jsonData.length - 1) {
+                click += 1;
+                this.setState({store: jsonData[click]});
+                $(".warning").css("display","none");
+            } 
+        } else{
+            $(".warning").css("display","block");
         }
     } 
-
+ 
     //on click handle prev ques
     handleBack() {
         if(click < jsonData.length) {
@@ -60,13 +68,10 @@ class Quizpage extends React.Component {
         }
     } 
 
+    //store user answer in object
     handleRadioVal(e) {
-        // this.setState({selectedOption: e.target.value});
-        // console.log(this.state.selectedOption);
+        this.setState({selectedOption: e.target.value});
         radioVal[click + 1] = e.target.value;
-        if(radioVal === ''){
-            alert('selectans');
-        }
         console.log(radioVal);
     }
 
@@ -86,21 +91,22 @@ class Quizpage extends React.Component {
                 </div>
                 <ul className="quizpage__option" onChange={this.handleRadioVal.bind(this)}>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option1} checked={this.state.store.option1 === 'option1'} /><p>{this.state.store.option1}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.option1} checked={radioVal[click+1] ===this.state.store.option1 }/><p>{this.state.store.option1}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option2} checked={this.state.store.option2 === 'option2'} /><p>{this.state.store.option2}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.option2} checked={radioVal[click+1] ===this.state.store.option2 } /><p>{this.state.store.option2}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option3} checked={this.state.store.option3 === 'option3'} /><p>{this.state.store.option3}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.option3}  checked={radioVal[click+1] ===this.state.store.option3 }/><p>{this.state.store.option3}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option4} checked={this.state.store.option4 === 'option4'} /><p>{this.state.store.option4}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.option4}  checked={radioVal[click+1] ===this.state.store.option4 }/><p>{this.state.store.option4}</p>
                     </li>
+                    <h1 className="warning">Please select the answer</h1>
                 </ul>
                 <div className="quizpage__footer">
-                    <p onClick={this.handleBack} id="js-back">Back</p>
-                    <p onClick={this.handleNext} id="js-next">Next</p>
+                    <p onClick={this.handleBack}>Back</p>
+                    <p onClick={this.handleNext}>Next</p>
                 </div>
             </div>
         );
