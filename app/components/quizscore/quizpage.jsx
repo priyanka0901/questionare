@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { PropTypes } from 'react';
 import jsonData from '../../data/data.js';
 
 var store = [];
@@ -12,11 +13,11 @@ var selectedOption = {};
 class Quizpage extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = { store: jsonData[0],
                         sec : 0,
                         min : 0,
-                        selectedOption: '',
-                        passUserAns:''}
+                        selectedOption: ''}
 
         this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
@@ -27,11 +28,11 @@ class Quizpage extends React.Component {
     // setstate of min and sec
     tick () {
         this.setState({sec: (this.state.sec + 1)})
-        if(this.state.sec === 30) {
+        if(this.state.sec === 60) {
             this.setState({sec: 0})
             this.setState({min: (this.state.min + 1)})
         }
-        if(this.state.min === 1 || click === 10){
+        if(this.state.min === 5 || click === 10){
             window.location = "/#scorepage";
         }
      } 
@@ -73,7 +74,6 @@ class Quizpage extends React.Component {
         this.setState({selectedOption: e.target.value});
         radioVal[click + 1] = e.target.value;
         if((click) === 1) {
-            this.props.passUserAns;
             console.log(this.props.passUserAns);
         }
     }

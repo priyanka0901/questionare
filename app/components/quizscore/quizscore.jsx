@@ -7,8 +7,12 @@ import Scorepage from './scorepage.jsx';
 var userValue = {};
 
 class QuizScore extends React.Component {
+    constructor(props) {
+        super(props);
+        this.passUserAns = this.passUserAns.bind(this);
+    }
+
     passUserAns(val) {
-        console.log('hello');
         userValue = val;
     }
 
