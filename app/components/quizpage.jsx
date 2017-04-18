@@ -31,7 +31,7 @@ class Quizpage extends React.Component {
             this.setState({sec: 0})
             this.setState({min: (this.state.min + 1)})
         }
-        if(this.state.min === 1 || click === 10){
+        if(this.state.min === 5){
             window.location = "/#scorepage";
         }
      } 
@@ -74,6 +74,9 @@ class Quizpage extends React.Component {
         radioVal[click + 1] = e.target.value;
         if((click) === 9) {
             this.props.passUserAns(radioVal);
+        }
+        if((click +1) === 10) {
+             window.location = "/#scorepage";
         }
     }
 
