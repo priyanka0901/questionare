@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PropTypes } from 'react';
-import jsonData from '../../data/data.js';
+import jsonData from '../data/data.js';
 
 var store = [];
 var click = 0;
@@ -13,7 +13,6 @@ var selectedOption = {};
 class Quizpage extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = { store: jsonData[0],
                         sec : 0,
                         min : 0,
@@ -32,7 +31,7 @@ class Quizpage extends React.Component {
             this.setState({sec: 0})
             this.setState({min: (this.state.min + 1)})
         }
-        if(this.state.min === 5 || click === 10){
+        if(this.state.min === 1 || click === 10){
             window.location = "/#scorepage";
         }
      } 
@@ -73,8 +72,8 @@ class Quizpage extends React.Component {
     handleRadioVal(e) {
         this.setState({selectedOption: e.target.value});
         radioVal[click + 1] = e.target.value;
-        if((click) === 1) {
-            console.log(this.props.passUserAns);
+        if((click) === 9) {
+            this.props.passUserAns(radioVal);
         }
     }
 
@@ -93,16 +92,16 @@ class Quizpage extends React.Component {
                 </div>
                 <ul className="quizpage__option" onChange={this.handleRadioVal}>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option1} checked={radioVal[click+1] ===this.state.store.option1 }/><p>{this.state.store.option1}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.options[0]} checked={radioVal[click+1] ===this.state.store.options[0] }/><p>{this.state.store.options[0]}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option2} checked={radioVal[click+1] ===this.state.store.option2 } /><p>{this.state.store.option2}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.options[1]} checked={radioVal[click+1] ===this.state.store.options[1] } /><p>{this.state.store.options[1]}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option3}  checked={radioVal[click+1] ===this.state.store.option3 }/><p>{this.state.store.option3}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.options[2]}  checked={radioVal[click+1] ===this.state.store.options[2] }/><p>{this.state.store.options[2]}</p>
                     </li>
                     <li>
-                        <input type="radio" name="option" className="options" value={this.state.store.option4}  checked={radioVal[click+1] ===this.state.store.option4 }/><p>{this.state.store.option4}</p>
+                        <input type="radio" name="option" className="options" value={this.state.store.options[3]}  checked={radioVal[click+1] ===this.state.store.options[3]}/><p>{this.state.store.options[3]}</p>
                     </li>
                     <h1 className="warning">Please select the answer</h1>
                 </ul>

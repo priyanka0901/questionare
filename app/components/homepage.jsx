@@ -21,6 +21,7 @@ class Homepage extends React.Component {
     handleChange(event) {
         this.setState({value: event.target.value});
         username = this.state.value;
+        this.props.handleUserName(username);
         if(this.state.value.length > 0) {
             $("#js-submit").css('display','block');
         }else{
@@ -30,7 +31,7 @@ class Homepage extends React.Component {
 
     //on click change to quiz page 
     handlePage() {
-        window.location = "#/quizpage";
+        window.location = "/#/quizpage";
     }
 
     render() {

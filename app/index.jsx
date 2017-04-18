@@ -4,9 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router';
 import Homepage from './components/homepage.jsx';
-import QuizScore from './components/quizscore/quizscore.jsx';
-import Quizpage from './components/quizscore/quizpage.jsx';
-import Scorepage from './components/quizscore/scorepage.jsx';
+import {QuizAns, UserScore, UserName} from './components/parentcomp.jsx';
 
 class Layout extends React.Component {
     render() {
@@ -21,9 +19,9 @@ class Layout extends React.Component {
 render((
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
-     <IndexRoute component={Homepage} />
-     <Route path="/quizpage" component={Quizpage} />
-     <Route path="/scorepage" component={Scorepage} />
+    <IndexRoute component={UserName} />
+    <Route path="/quizpage" component={QuizAns} />
+    <Route path="/scorepage" component={UserScore}/>
     </Route>
   </Router>
 ), document.getElementById('app'));
