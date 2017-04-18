@@ -4,15 +4,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router';
 import Homepage from './components/homepage.jsx';
-import Quizpage from './components/quizpage.jsx';
-import Scorepage from './components/scorepage.jsx';
-
+import QuizScore from './components/quizscore/quizscore.jsx';
+import Quizpage from './components/quizscore/quizpage.jsx';
+import Scorepage from './components/quizscore/scorepage.jsx';
 
 class Layout extends React.Component {
     render() {
         return (
             <div>
-               
                 {this.props.children}
             </div>
         );

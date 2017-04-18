@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import jsonData from '../data/data.js';
+import jsonData from '../../data/data.js';
 
 var store = [];
 var click = 0;
@@ -15,7 +15,8 @@ class Quizpage extends React.Component {
         this.state = { store: jsonData[0],
                         sec : 0,
                         min : 0,
-                        selectedOption: ''}
+                        selectedOption: '',
+                        passUserAns:''}
 
         this.handleNext = this.handleNext.bind(this);
         this.handleBack = this.handleBack.bind(this);
@@ -26,12 +27,11 @@ class Quizpage extends React.Component {
     // setstate of min and sec
     tick () {
         this.setState({sec: (this.state.sec + 1)})
-        if(this.state.sec === 60) {
+        if(this.state.sec === 30) {
             this.setState({sec: 0})
             this.setState({min: (this.state.min + 1)})
         }
-        if(this.state.min === 5){
-            alert('time up');
+        if(this.state.min === 1 || click === 10){
             window.location = "/#scorepage";
         }
      } 
@@ -72,9 +72,11 @@ class Quizpage extends React.Component {
     handleRadioVal(e) {
         this.setState({selectedOption: e.target.value});
         radioVal[click + 1] = e.target.value;
-        console.log(radioVal);
+        if((click) === 1) {
+            this.props.passUserAns;
+            console.log(this.props.passUserAns);
+        }
     }
-
 
     render() {
         return (
@@ -89,7 +91,7 @@ class Quizpage extends React.Component {
                 <div className="quizpage__quest">
                     <p className="quest-para" id="js-quest-para">{this.state.store.quest}</p>
                 </div>
-                <ul className="quizpage__option" onChange={this.handleRadioVal.bind(this)}>
+                <ul className="quizpage__option" onChange={this.handleRadioVal}>
                     <li>
                         <input type="radio" name="option" className="options" value={this.state.store.option1} checked={radioVal[click+1] ===this.state.store.option1 }/><p>{this.state.store.option1}</p>
                     </li>
