@@ -3,8 +3,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router';
-import Homepage from './components/homepage.jsx';
-import {QuizAns, UserScore, UserName} from './components/parentcomp.jsx';
+import AppContainer from './components/parentcomp.jsx';
 
 class Layout extends React.Component {
     render() {
@@ -14,14 +13,10 @@ class Layout extends React.Component {
             </div>
         );
     }
-};
+}
 
 render((
-  <Router history={hashHistory}>
-    <Route path="/" component={Layout}>
-    <IndexRoute component={UserName} />
-    <Route path="/quizpage" component={QuizAns} />
-    <Route path="/scorepage" component={UserScore}/>
-    </Route>
-  </Router>
+  <Layout>
+      <AppContainer />
+    </Layout>
 ), document.getElementById('app'));

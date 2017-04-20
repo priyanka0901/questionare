@@ -22,6 +22,7 @@ internals.paths = {
     },
     lint: [
         './app/**/*.js',
+        './app/**/*.jsx',
         './test/**/*.js',
     ]
 };

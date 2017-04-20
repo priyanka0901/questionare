@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-var jsonData = [
+var questionData = [
     {   
         questid : "1", 
         quest: "What will happen if in a C program you assign a value to an array element whose subscript exceeds the size of array?",
@@ -72,4 +72,4 @@ var jsonData = [
     }
 ]
 
-export default jsonData;
+export default questionData;

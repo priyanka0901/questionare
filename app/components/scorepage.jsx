@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import jsonData from '../data/data.js';
+import questionData from '../data/data.js';
 
 var rightAnswer = 0;
 
@@ -10,23 +10,22 @@ class Scorepage extends React.Component {
     componentWillMount() {
         var radioValue = this.props.radioValue;
         for(var i = 0; i < 10; i++) {
-            var ansindex = jsonData[i].rightans;
-            if(radioValue[i + 1 + ''] == jsonData[i].options[ansindex]) {
-                rightAnswer += 1;   
+            if(radioValue[i+1] === questionData[i].questid + questionData[i].rightans) {
+                rightAnswer += 1;
             }
         }
     }
 
-    
+
     handleReQuiz() {
-        window.location = "/#quizpage";
+        window.location = '/#quizpage';
         location.reload();
     }
 
     render() {
         return (
             <div className ="scorepage__layout">
-                <h1 className="scorepage__heading">Hello {this.props.username}</h1>
+                <h1 className="scorepage__heading">Hello {this.props.userName}</h1>
                 <p className="scorepage__score">You scored {rightAnswer}/ out of 10 </p>
                 <button type="submit" className="scorepage__button" onClick={this.handleReQuiz}>Re-take Quiz </button>
             </div>

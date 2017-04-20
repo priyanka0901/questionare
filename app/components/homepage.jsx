@@ -1,14 +1,14 @@
 'use strict';
 
 import React from 'react';
-import {Link} from 'react-router'; 
+import {Link} from 'react-router';
+import $ from 'jquery';
 
-var username = [];
 class Homepage extends React.Component {
-    //initail state of name 
+    //initail state of name
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = { username: ''};
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -18,20 +18,15 @@ class Homepage extends React.Component {
     }
 
     //button visible if target value is not empty
-    handleChange(event) {
-        this.setState({value: event.target.value});
-        username = this.state.value;
-        this.props.handleUserName(username);
-        if(this.state.value.length > 0) {
-            $("#js-submit").css('display','block');
-        }else{
-            $("#js-submit").css('display','none');
-        }
+    handleChange (event) {
+        var userName = event.target.value;
+        this.setState({username: userName} );
+        this.props.handleUserName(userName);
     }
 
-    //on click change to quiz page 
+    //on click change to quiz page
     handlePage() {
-        window.location = "/#/quizpage";
+        window.location = '/#/quizpage';
     }
 
     render() {
@@ -42,9 +37,12 @@ class Homepage extends React.Component {
                     <p className="home__inner_heading">Quiz</p>
                     <form onSubmit = {this.handleSubmit}>
                         <p className="homer__inner_name">Name </p>
-                        <input type="text" id="js-name" className="name_input" placeholder="Enter your name" value={this.state.value} onChange={this.handleChange}/>
+                        <input type="text" id="js-name" className="name_input" placeholder="Enter your name" value={this.state.username} onChange={this.handleChange}/>
                     </form>
+                    {this.state.username   ? 
                     <button type="submit" value="submit" className="name_button" id="js-submit" onClick={this.handlePage}>Welcome to quiz</button>
+                    :null
+                    }
                 </div>
             </div>
         );
