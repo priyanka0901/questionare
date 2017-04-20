@@ -8,9 +8,9 @@ var rightAnswer = 0;
 class Scorepage extends React.Component {
     //handle user answer
     componentWillMount() {
-        var radioValue = this.props.radioValue;
+        var userValue = this.props.userValue;
         for(var i = 0; i < 10; i++) {
-            if(radioValue[i+1] === questionData[i].questid + questionData[i].rightans) {
+            if(userValue[i+1] === questionData[i].questid + questionData[i].rightans) {
                 rightAnswer += 1;
             }
         }

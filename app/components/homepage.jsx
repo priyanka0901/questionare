@@ -18,7 +18,7 @@ class Homepage extends React.Component {
     }
 
     //button visible if target value is not empty
-    handleChange (event) {
+    handleChange(event) {
         var userName = event.target.value;
         this.setState({username: userName} );
         this.props.handleUserName(userName);
