@@ -9,12 +9,14 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
-             <AppContainer />
+                {this.props.children}
             </div>
         );
     }
 }
 
 render((
-  <Layout/>
+    <Layout>
+      <AppContainer />
+    </Layout>
 ), document.getElementById('app'));

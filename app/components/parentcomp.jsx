@@ -17,6 +17,16 @@ class AppContainer extends React.Component {
         };
         this.handleUserName = this.handleUserName.bind(this);
         this.passUserAns= this.passUserAns.bind(this);
+        this.routes = {
+            path: '/',
+            indexRoute: {
+                component: () =>(<Homepage handleUserName={this.handleUserName} />)
+            },
+            childRoutes: [
+                { path: '/quizpage', component: () =>(<Quizpage passUserAns={this.passUserAns}/>) },
+                { path: '/scorepage', component: () => (<Scorepage userName={this.state.userName} userValue={this.state.userValue} />) }
+            ]
+        };
   }
 
   handleUserName(value) {
@@ -29,11 +39,7 @@ class AppContainer extends React.Component {
  
   render () {
     return (
-      <Router history={hashHistory}>  
-          <Route path='/' component={() =>(<Homepage handleUserName={this.handleUserName} />)} />
-          <Route path='/quizpage' component={() =>(<Quizpage passUserAns={this.passUserAns}/>)} />
-          <Route path='/scorepage' component={() => (<Scorepage userName={this.state.userName} userValue={this.state.userValue} />)}/>
-      </Router>
+      <Router history={hashHistory} routes={this.routes} />
     );
   }
 }

@@ -98,7 +98,7 @@ class Quizpage extends React.Component {
                 <ul className="quizpage__option" onChange={this.handleRadioVal}>
                     {this.state.store.options.map((value, index) => {
                         return (
-                            <li>
+                            <li key={'option_'+index}>
                                 <input type="radio" id={this.state.store.questid + index} name="option" className="options" value={this.state.store.options[index]} checked={this.userAnsVal[this.nextClick+1] ===this.state.store.questid + index }/><p>{this.state.store.options[index]}</p>
                             </li>
             
